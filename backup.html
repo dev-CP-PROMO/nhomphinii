@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>all-contents – Exclusive Shop</title>
+<style>
+:root{
+  --primary:#6c63ff;
+  --secondary:#00e5ff;
+  --accent:#ff4ecd;
+
+  --bg:#f8f9ff;
+  --card:#ffffff;
+  --text:#0f0f1a;
+  --text-soft:#555577;
+
+  --border:#e6e6ff;
+  --success:#00d084;
+}
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:linear-gradient(135deg,#ffffff,#f4f6ff);
+color:var(--text);
+font-family:'Manrope',sans-serif;
+padding:20px;
+line-height:1.6;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+/* LIVE BAR */
+
+.live-bar{
+background:#ffffff;
+border:1px solid var(--border);
+border-radius:14px;
+padding:14px 22px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:10px;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.06),
+0 0 20px rgba(108,99,255,0.1);
+}
+
+.viewer-count{
+font-weight:700;
+color:var(--primary);
+font-size:1.1rem;
+}
+
+/* SUPPORT BUTTON */
+
+.support-btn{
+background:linear-gradient(135deg,var(--primary),var(--accent));
+color:white;
+text-decoration:none;
+padding:9px 18px;
+border-radius:40px;
+font-weight:600;
+
+display:inline-flex;
+align-items:center;
+gap:8px;
+
+transition:.25s;
+box-shadow:0 6px 18px rgba(108,99,255,0.35);
+}
+
+.support-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 22px rgba(108,99,255,0.5);
+}
+
+/* OFFER SECTION */
+
+.custom-offer{
+display:flex;
+gap:18px;
+margin:30px 0;
+flex-wrap:wrap;
+}
+
+.offer-card{
+background:#ffffff;
+border-radius:18px;
+padding:22px;
+
+flex:1;
+min-width:260px;
+text-align:center;
+
+border:1px solid var(--border);
+
+box-shadow:
+0 8px 24px rgba(0,0,0,0.06);
+}
+
+.offer-card h3{
+margin-bottom:10px;
+color:var(--primary);
+font-size:1.2rem;
+}
+
+.offer-card p{
+color:var(--text-soft);
+font-size:.95rem;
+}
+
+/* INPUTS */
+
+.offer-card textarea,
+.offer-card input{
+
+width:100%;
+background:#f5f6ff;
+
+border:1px solid var(--border);
+border-radius:12px;
+
+padding:14px;
+margin-top:12px;
+
+font-size:.95rem;
+outline:none;
+
+transition:.25s;
+}
+
+.offer-card textarea:focus,
+.offer-card input:focus{
+
+border-color:var(--primary);
+box-shadow:0 0 0 3px rgba(108,99,255,0.15);
+
+background:#fff;
+}
+
+/* BUTTON TELEGRAM */
+
+.telegram-btn{
+
+background:linear-gradient(135deg,var(--primary),var(--accent));
+
+color:white;
+border:none;
+
+padding:12px 20px;
+border-radius:40px;
+
+font-weight:700;
+font-size:1rem;
+
+width:100%;
+margin-top:14px;
+
+cursor:pointer;
+
+transition:.25s;
+box-shadow:0 6px 18px rgba(108,99,255,0.35);
+}
+
+.telegram-btn:hover{
+
+transform:translateY(-2px) scale(1.03);
+box-shadow:0 10px 28px rgba(108,99,255,0.5);
+}
+
+/* PRODUCTS GRID */
+
+.products-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:26px;
+}
+
+@media(min-width:810px){
+.products-grid{
+grid-template-columns:repeat(2,1fr);
+}
+}
+
+/* PRODUCT CARD */
+
+.product-card{
+
+background:#ffffff;
+
+border-radius:18px;
+overflow:hidden;
+
+border:1px solid var(--border);
+
+box-shadow:
+0 8px 28px rgba(0,0,0,0.07);
+
+transition:.25s;
+}
+
+.product-card:hover{
+
+transform:translateY(-6px);
+box-shadow:
+0 12px 36px rgba(108,99,255,0.25);
+}
+
+/* HEADER */
+
+.product-header{
+padding:20px;
+background:linear-gradient(135deg,#ffffff,#f4f6ff);
+position:relative;
+}
+
+.product-title{
+font-family:'Salsa',cursive;
+font-size:1.7rem;
+color:var(--text);
+}
+
+/* BADGE */
+
+.best-seller-badge{
+
+position:absolute;
+top:16px;
+right:16px;
+
+background:linear-gradient(135deg,#ffcc00,#ff6a00);
+
+padding:5px 14px;
+border-radius:30px;
+
+font-size:.8rem;
+font-weight:700;
+color:#000;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* MEDIA */
+
+.product-media,
+.product-video{
+
+width:100%;
+display:block;
+}
+
+.product-video{
+aspect-ratio:16/9;
+object-fit:cover;
+}
+
+/* DESCRIPTION */
+
+.product-desc{
+
+padding:20px;
+
+font-size:.95rem;
+color:var(--text-soft);
+}
+
+.product-desc ul{
+list-style:none;
+}
+
+.product-desc ul li::before{
+
+content:"✓ ";
+color:var(--success);
+font-weight:700;
+}
+
+/* BUY BUTTON */
+
+.buy-btn{
+
+display:block;
+
+background:linear-gradient(135deg,var(--primary),var(--accent));
+
+color:white;
+text-decoration:none;
+
+padding:14px;
+margin:15px 20px 22px;
+
+border-radius:40px;
+
+font-weight:700;
+font-size:1.05rem;
+
+text-align:center;
+
+border:none;
+cursor:pointer;
+
+transition:.25s;
+box-shadow:0 8px 20px rgba(108,99,255,0.35);
+}
+
+.buy-btn:hover{
+
+transform:scale(1.04);
+box-shadow:0 10px 26px rgba(108,99,255,0.5);
+}
+
+/* NOTIFICATIONS */
+
+#live-notifications{
+
+position:fixed;
+top:20px;
+right:20px;
+z-index:9999;
+max-width:320px;
+}
+
+.notification-item{
+
+background:#ffffff;
+
+border-radius:12px;
+padding:14px 18px;
+margin-bottom:12px;
+
+border-left:4px solid var(--primary);
+
+box-shadow:0 10px 22px rgba(0,0,0,0.1);
+
+animation:slideIn .4s,
+fadeOut .8s 4s forwards;
+
+font-size:.9rem;
+}
+
+.notification-item strong{
+color:var(--primary);
+}
+
+/* ANIMATIONS */
+
+@keyframes slideIn{
+
+from{
+transform:translateX(100%);
+opacity:0;
+}
+
+to{
+transform:translateX(0);
+opacity:1;
+}
+}
+
+@keyframes fadeOut{
+to{
+opacity:0;
+transform:translateX(100%);
+}
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+.product-title{
+font-size:1.4rem;
+}
+
+.live-bar{
+flex-direction:column;
+text-align:center;
+}
+}
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <!-- Viewer Count + Support -->
+    <div class="live-bar">
+      <a href="https://t.me/The_bigsellerr" target="_blank" class="support-btn">💬 Telegram Support</a>
+    </div>
+<!-- Custom Folder & VIP Group Section -->
+<div class="custom-offer">
+
+
+    <!-- Products Grid -->
+    <div class="products-grid" id="products-container"></div>
+  </div>
+
+  <script>
+    // Product data in English
+
+
+  const products = [
+
+  {
+    title: "NEW 2025 CP",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/2025-cp.mp4",
+    desc: "* CP CONTENTS OF 2025<br>* +7GB OF FILES<br>* +1,050 VIDEOS",
+    chips: ["7GB+", "Novo", "2025"],
+    badges: [{ label: "🔥 HOT", cls: "hot" }, { label: "NEW", cls: "new" }],
+    proof: ["/proof/1.jpg", "/proof/2.jpg", "/proof/3.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 1340
+  },
+  {
+    title: "PREMIUM CP",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Premium-cp.mp4",
+    desc: "* PREMIUM CP FULL<br>* +19 GB OF FILES<br>* +3,250 LONG VIDEOS",
+    chips: ["19GB+", "Premium", "Top Quality"],
+    badges: [{ label: "⭐ PREMIUM", cls: "premium" }, { label: "VIP", cls: "vip" }],
+    proof: ["/proof/4.jpg", "/proof/5.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 2340
+  },
+  {
+    title: "CP1",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Cp1.jpg",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Folder1-c.mp4",
+    desc: "* CP1 CONTENTS<br>* +5GB OF FILES<br>* +800 VIDEOS",
+    chips: ["5GB+", "Best Seller", "Popular"],
+    badges: [{ label: "🔥 HOT", cls: "hot" }, { label: "BEST SELLER", cls: "seller" }],
+    proof: ["/proof/6.jpg", "/proof/7.jpg", "/proof/8.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 4560
+  },
+  {
+    title: "CP2",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Cp2.jpg",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/folder2-c.mp4",
+    desc: "* CP2 CONTENTS<br>* +13GB OF FILES<br>* +2,440 VIDEOS",
+    chips: ["13GB+", "Top Rated", "Exclusive"],
+    badges: [{ label: "🏆 TOP", cls: "top" }, { label: "25$ ONLY", cls: "promo" }],
+    proof: ["/proof/9.jpg", "/proof/10.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 3120
+  },
+  {
+    title: "CP3",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/CP3-1-1536x810-1-1024x540.jpg",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/folder3-c.mp4",
+    desc: "* CP3 CONTENTS<br>* +22GB OF FILES<br>* +4,000 VIDEOS",
+    chips: ["22GB+", "Mega", "Best Value"],
+    badges: [{ label: "🔥 HOT", cls: "hot" }, { label: "PROMO DAY", cls: "promo-day" }],
+    proof: ["/proof/11.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 5670
+  },
+  {
+    title: "CP4",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Cp4-1024x576.jpg",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/folder-4-c.mp4",
+    desc: "* CP4 CONTENTS<br>* +30GB OF FILES<br>* +6,050 VIDEOS",
+    chips: ["30GB+", "Ultimate", "Huge Pack"],
+    badges: [{ label: "💎 ULTIMATE", cls: "ultimate" }, { label: "VIP CONTENT", cls: "vip-content" }],
+    proof: ["/proof/1.jpg", "/proof/2.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 7890
+  },
+  {
+    title: "MOM AND SON - CP",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Mon-and-son-cp.jpg",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/pmomm-p.mp4",
+    desc: "* MOM AND SON<br>* +3GB OF FILES<br>* +600 VIDEOS<br>* BEST SELLER",
+    chips: ["3GB+", "Best Seller", "Exclusive"],
+    badges: [{ label: "🔥 HOT", cls: "hot" }, { label: "BEST SELLER", cls: "seller" }, { label: "BUY 1 GET 2 FREE", cls: "bogo" }],
+    proof: ["/proof/3.jpg", "/proof/4.jpg", "/proof/5.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 9230
+  },
+  {
+    title: "EXCLUSIVE CP",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Exclusive-cp.mp4",
+    desc: "* INCLUDES PREMIUM CP<br>* +25GB OF FILES<br>* +4,900 VIDEOS WITH MIXED LONG VIDEOS",
+    chips: ["25GB+", "Exclusive", "Limited"],
+    badges: [{ label: "⭐ EXCLUSIVE", cls: "exclusive" }, { label: "VIP", cls: "vip" }],
+    proof: ["/proof/6.jpg", "/proof/7.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 4450
+  },
+  {
+    title: "RAPE & CP",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Rape-1.mp4",
+    desc: "* GIRLS RESISTING<br>* SCREAMING AND ASKING FOR HELP<br>* +6GB OF FILES<br>* +500 VIDEOS",
+    chips: ["6GB+", "Extreme", "18+"],
+    badges: [{ label: "⚠️ 18+", cls: "adult" }, { label: "OUT NOW", cls: "out-now" }],
+    proof: ["/proof/8.jpg", "/proof/9.jpg", "/proof/10.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 2340
+  },
+  {
+    title: "REAL INCEST - MOM AND SON ADULT",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/MOM-AND-SON-adult-1024x540.jpg",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/REAL-Mom-Son-Hidden-Cam-2_@newsociety0-telegram-Fsociety2-reddit-join-Signal-app-group_.mp4",
+    desc: "* REAL INCEST MOM AND SON<br>* MOM AND DAUGHTER<br>* +12GB OF FILES<br>* LONG VIDEOS",
+    chips: ["12GB+", "Real", "Hidden Cam"],
+    badges: [{ label: "🔥 HOT", cls: "hot" }, { label: "25$ ONLY", cls: "promo" }],
+    proof: ["/proof/11.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 5670
+  },
+  {
+    title: "ADULT RAPE",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/RAPE-ADULT.mp4",
+    desc: "* FORCED SEX<br>* UK, CANADA AND LATINA RAPE",
+    chips: ["4GB+", "Adult", "18+"],
+    badges: [{ label: "⚠️ 18+", cls: "adult" }, { label: "VIP CONTENT", cls: "vip-content" }],
+    proof: ["/proof/1.jpg", "/proof/2.jpg", "/proof/3.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 1890
+  },
+  {
+    title: "HIGHSCHOOL THOTS",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Highschool-thots-1024x576.webp",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Highschool-thots.mov",
+    desc: "* TEENS FUCKING, SUCKING, SOLO, THREESOME AND MORE<br>* +8GB OF FILES<br>* +750 VIDEOS",
+    chips: ["8GB+", "Teens", "Popular"],
+    badges: [{ label: "🔥 HOT", cls: "hot" }, { label: "BUY 1 GET 2 FREE", cls: "bogo" }],
+    proof: ["/proof/4.jpg", "/proof/5.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 6780
+  },
+  {
+    title: "ENGLISH TEENS",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/English-teens.mov",
+    desc: "* MORE THAN 600 GIRLS UNDER 16Y<br>* +13GB OF FILES<br>* +1,250 LONG VIDEOS",
+    chips: ["13GB+", "UK Girls", "Under 16"],
+    badges: [{ label: "⭐ PREMIUM", cls: "premium" }, { label: "PROMO DAY", cls: "promo-day" }],
+    proof: ["/proof/6.jpg", "/proof/7.jpg", "/proof/8.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 3450
+  },
+  {
+    title: "AYUMI GIRL",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Yumi.mov",
+    desc: "* AYUMI GIRL<br>* 2GB OF FILES<br>* LONG VIDEOS",
+    chips: ["2GB+", "Ayumi", "Long Videos"],
+    badges: [{ label: "✨ FEATURED", cls: "featured" }, { label: "25$ ONLY", cls: "promo" }],
+    proof: ["/proof/9.jpg", "/proof/10.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 1230
+  },
+  {
+    title: "ROSE FOLDER",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Rose.mov",
+    desc: "* ROSE GIRL<br>* PURE CONTENT<br>* LONG VIDEOS WITH 6GB OF FILES",
+    chips: ["6GB+", "Pure", "Rose"],
+    badges: [{ label: "🌹 ROSE", cls: "rose" }, { label: "VIP CONTENT", cls: "vip-content" }],
+    proof: ["/proof/11.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 890
+  },
+  {
+    title: "PYT CHANNEL",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/IMG_7725.mov",
+    desc: "* 9 PYT CHANNELS<br>* WHITE, BLACK, LIGHTSKIN, LATINA AND NYC GIRLS<br>* MORE THAN 10K VIDEOS",
+    chips: ["10GB+", "9 Channels", "PYT"],
+    badges: [{ label: "🔥 HOT", cls: "hot" }, { label: "OUT NOW", cls: "out-now" }],
+    proof: ["/proof/1.jpg", "/proof/2.jpg", "/proof/3.jpg", "/proof/4.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 4560
+  },
+  {
+    title: "AMELIA BLONDE GIRL",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Amelia-1024x576.webp",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Amelia.mp4",
+    desc: "* AMELIA BLONDE 13Y<br>* +1GB OF FILES<br>* LONG VIDEOS",
+    chips: ["1GB+", "Blonde", "13Y"],
+    badges: [{ label: "💛 BLONDE", cls: "blonde" }, { label: "VIP CONTENT", cls: "vip-content" }],
+    proof: ["/proof/5.jpg", "/proof/6.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 2340
+  },
+  {
+    title: "BOTTOM QUARK - GAY BOY",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Quart-Bottom-1024x576.png",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Bottom-Quark.mp4",
+    desc: "* GAY BOY<br>* +3GB OF FILES<br>* SOLO, BLOOD, BODY WRITTING, CUM, DILDO AND MORE",
+    chips: ["3GB+", "Gay", "18+"],
+    badges: [{ label: "🌈 GAY", cls: "gay" }, { label: "25$ ONLY", cls: "promo" }],
+    proof: ["/proof/7.jpg", "/proof/8.jpg", "/proof/9.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 980
+  },
+  {
+    title: "DESIREE GARCIA",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Garcia-12-1024x576.webp",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Garcia.mp4",
+    desc: "* DESIREE GARCIA 15Y<br>* MASTURBATING WHILE PROVOKING PEDOS<br>* +1GB OF FILES AND HER SOCIAL MEDIA<br>* +160 VIDEOS",
+    chips: ["1GB+", "Desiree", "15Y"],
+    badges: [{ label: "🔥 HOT", cls: "hot" }, { label: "PROMO DAY", cls: "promo-day" }],
+    proof: ["/proof/10.jpg", "/proof/11.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 3450
+  },
+  {
+    title: "SNAPGOD FULL Edt.",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Snapgod.webp",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Snapgod.mp4",
+    desc: "* BLACKMAILED GIRLS ON SNAPCHAT<br>* +530GB OF PURE CONTENT<br>* +FOLDER WITH (LIZZY, IZZY, AVA, SAVANNAH….)<br>* BEST LONG VIDEOS",
+    chips: ["530GB+", "Snapchat", "Blackmail"],
+    badges: [{ label: "💀 SNAPGOD", cls: "snapgod" }, { label: "VIP CONTENT", cls: "vip-content" }],
+    proof: ["/proof/1.jpg", "/proof/2.jpg", "/proof/3.jpg", "/proof/4.jpg", "/proof/5.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 2340
+  },
+  {
+    title: "IVANKA AND HER LITTLE BROTHER",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/ivanka-1024x576.webp",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/ivanka.mp4",
+    desc: "* IVANKA AND BRO<br>* SOLO<br>* INCEST WITH HER BRO<br>* 10GB OF FILES<br>* LONG VIDEOS",
+    chips: ["10GB+", "Incest", "Ivanka"],
+    badges: [{ label: "🔥 HOT", cls: "hot" }, { label: "BUY 1 GET 2 FREE", cls: "bogo" }],
+    proof: ["/proof/6.jpg", "/proof/7.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 5670
+  },
+  {
+    title: "EMMI SELLERS",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/emmi.mp4",
+    desc: "* EMMI SELLERS<br>* GOT HER GALLERY VIDEOS LEAKED AFTER BROKEUP WITH HER BOYFRIEND<br>* 10GB OF FILES<br>* LONG VIDEOS",
+    chips: ["10GB+", "Leaked", "Emmi"],
+    badges: [{ label: "📸 LEAKED", cls: "leaked" }, { label: "25$ ONLY", cls: "promo" }],
+    proof: ["/proof/8.jpg", "/proof/9.jpg", "/proof/10.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 890
+  },
+  {
+    title: "NEW BLACK PYT",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Black-pyt.jpeg",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Black-Pyt.mp4",
+    desc: "* BLACK GIRLS VIDEOS<br>* USA, LATINA AND CANADA GIRLS<br>* +9GB OF FILES",
+    chips: ["9GB+", "Black", "PYT"],
+    badges: [{ label: "🖤 BLACK", cls: "black" }, { label: "OUT NOW", cls: "out-now" }],
+    proof: ["/proof/11.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 1230
+  },
+  {
+    title: "MONKEY APP WINS",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Monkey-app-1024x540.jpg",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Monkey-app.mov",
+    desc: "* GIRLS FROM ALL COUNTRIES&nbsp;<br>* +10GB OF FILES<br>* +5000 VIDEOS",
+    chips: ["10GB+", "Monkey App", "Global"],
+    badges: [{ label: "🐒 MONKEY", cls: "monkey" }, { label: "VIP CONTENT", cls: "vip-content" }],
+    proof: ["/proof/1.jpg", "/proof/2.jpg", "/proof/3.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 3450
+  },
+  {
+    title: "TWO BANANA GIRLS",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Banana-Girls.mp4",
+    desc: "* VERY FAMOUS GIRLS FROM OMEGLE GAME<br>* +2HR LONG VIDEOS<br>* +3GB OF FILE",
+    chips: ["3GB+", "Omegle", "Famous"],
+    badges: [{ label: "🍌 BANANA", cls: "banana" }, { label: "PROMO DAY", cls: "promo-day" }],
+    proof: ["/proof/4.jpg", "/proof/5.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 2340
+  },
+  {
+    title: "DARKZADIE REN",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Darkzadie-1024x540.jpg",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Darkzadie.mp4",
+    desc: "* DARKZADIE REN CONTENT<br>* +3GB OF FILES<br>* LONG VIDEOS",
+    chips: ["3GB+", "Darkzadie", "Goth"],
+    badges: [{ label: "🖤 DARK", cls: "dark" }, { label: "25$ ONLY", cls: "promo" }],
+    proof: ["/proof/6.jpg", "/proof/7.jpg", "/proof/8.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 980
+  },
+  {
+    title: "MIXED TEENS COLLECTION",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Teens-1024x539.webp",
+    video: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/teens.mp4",
+    desc: "* MORE THAN 700 TEENS<br>* +30GB OF FILES<br>* MIXED CONTENTS",
+    chips: ["30GB+", "Teens", "Mixed"],
+    badges: [{ label: "🔥 HOT", cls: "hot" }, { label: "BUY 1 GET 2 FREE", cls: "bogo" }],
+    proof: ["/proof/9.jpg", "/proof/10.jpg", "/proof/11.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 6780
+  },
+  {
+    title: "VIP CHANNEL PROMO - ALL FOLDERS",
+    img: "https://dev-exclusive-secretshop.pantheonsite.io/wp-content/uploads/2025/12/Vip-channel-1024x576.webp",
+    desc: "* ACCESS TO ALL FOLDERS<br>* INSTANT DELIVERY<br>* LIFETIME UPDATES",
+    chips: ["All Access", "Lifetime", "Instant"],
+    badges: [{ label: "👑 VIP", cls: "vip" }, { label: "VIP CONTENT", cls: "vip-content" }, { label: "🔥 HOT", cls: "hot" }],
+    proof: ["/proof/1.jpg", "/proof/2.jpg", "/proof/3.jpg", "/proof/4.jpg", "/proof/5.jpg"],
+    proofCaption: "Sales proof",
+    freeLink: "https://mega.nz/folder/XuxRjIKL#LFrqwIU0fAKv9O3UpP3LiA",
+    buyLink: TG_URL,
+    views: 12340
+  }
+
+ 
+  // ── Add more products below (uncomment and fill) ──
+  // {
+  //   title    : "Pack Premium",
+  //   video    : "videos/pack-premium.mp4",
+  //   desc     : "Description of the pack...",
+  //   chips    : ["15GB+", "VIP", "Lifetime"],
+  //   badges   : [{ label: "💎 VIP", cls: "vip" }, { label: "✨ NEW", cls: "new" }],
+  //   proof    : "img/proof-pack.jpg",
+  //   proofCaption: "Sales proof — Pack Premium",
+  //   freeLink : "",
+  //   buyLink  : TG_URL,
+  //   views    : 890,
+  // },
+];
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const TELEGRAM_SUPPORT = "https://t.me/The_bigsellerr";
+
+function openTelegram(title, price) {
+  const message = encodeURIComponent(
+    `Hello, I want to purchase this folder:\n\n` +
+    `📂 Folder: ${title}\n` +
+       `Please guide me through the payment process.`
+  );
+
+  window.open(
+    `${TELEGRAM_SUPPORT}?text=${message}`,
+    "_blank"
+  );
+}
+  const container = document.getElementById("products-container");
+  if (!container) {
+    console.error("products-container não encontrado");
+    return;
+  }
+
+  products.forEach(p => {
+    let mediaHtml = "";
+
+    if (p.video) {
+      mediaHtml = `
+        <video class="product-video"
+          src="${p.video}"
+          controls
+          preload="metadata"
+          controlslist="nodownload">
+        </video>`;
+    } else if (p.img) {
+      mediaHtml = `
+        <img class="product-media"
+          src="${p.img}"
+          alt="${p.title}"
+          loading="lazy">`;
+    }
+
+    const card = document.createElement("div");
+    card.className = "product-card";
+
+    card.innerHTML = `
+      <div class="product-header">
+        <div class="product-title">${p.title}</div>
+        ${p.bestSeller ? '<div class="best-seller-badge">🔥 BEST SELLER</div>' : ''}
+      </div>
+
+      ${mediaHtml}
+
+      <div class="product-desc">${p.desc}</div>
+
+      <button type="button" class="buy-btn">
+        BUY NOW
+      </button>
+    `;
+
+    const button = card.querySelector(".buy-btn");
+    button.addEventListener("click", () => {
+      openTelegram(p.title, p.price);
+    });
+
+    container.appendChild(card);
+  });
+
+});
+
+const TELEGRAM_SUPPORT = "https://t.me/The_bigsellerr";
+
+function sendCustomFolder() {
+  const input = document.getElementById("custom-folder-text").value.trim();
+
+  if (!input) {
+    alert("Please describe the folder and your price offer.");
+    return;
+  }
+
+  // Detect first number in text as price
+  const priceMatch = input.match(/\b\d{1,4}\b/);
+  const detectedPrice = priceMatch ? `$${priceMatch[0]}` : "Not specified";
+
+  const message = encodeURIComponent(
+    `Hello, I would like to negotiate a custom folder.\n\n` +
+    `📂 Request Details:\n${input}\n\n` +
+      `Please let me know if this is possible.`
+  );
+
+  window.open(`${TELEGRAM_SUPPORT}?text=${message}`, "_blank");
+}
+
+function sendVipRequest() {
+  const vipName = document.getElementById("vip-group-text").value.trim();
+
+  if (!vipName) {
+    alert("Please enter the VIP group name.");
+    return;
+  }
+
+  const message = encodeURIComponent(
+    `Hello, I am interested in joining a VIP group.\n\n` +
+    `💎 VIP Group Name: ${vipName}\n\n` +
+    `Please send me the payment details.`
+  );
+
+  window.open(`${TELEGRAM_SUPPORT}?text=${message}`, "_blank");
+}
+
+    // Live purchase notifications
+    const buyers = [
+      { name: "Lucas R.", product: "PREMIUM CP", location: "São Paulo, BR" },
+      { name: "Emma T.", product: "MOM AND SON - CP", location: "London, UK" },
+      { name: "Jayden K.", product: "SNAPGOD FULL Edt.", location: "New York, US" },
+      { name: "Mia L.", product: "HIGHSCHOOL THOTS", location: "Vancouver, CA" },
+      { name: "Diego M.", product: "CP4", location: "Madrid, ES" },
+      { name: "Aisha N.", product: "VIP CHANNEL PROMO", location: "Dubai, AE" }
+    ];
+
+    function showNotification() {
+      const buyer = buyers[Math.floor(Math.random() * buyers.length)];
+      const el = document.createElement('div');
+      el.className = 'notification-item';
+      el.innerHTML = `
+        🛒 <strong>${buyer.name}</strong> purchased <strong>${buyer.product}</strong><br>
+        <small>📍 ${buyer.location} • Just now</small>
+      `;
+      document.getElementById('live-notifications').appendChild(el);
+      setTimeout(() => el.remove(), 4800);
+    }
+
+    showNotification();
+    setInterval(showNotification, Math.floor(Math.random() * 20000) + 20000);
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+    // Live purchase notifications
+    const buyers = [
+      { name: "Lucas R.", product: "PREMIUM CP", location: "São Paulo, BR" },
+      { name: "Emma T.", product: "MOM AND SON - CP", location: "London, UK" },
+      { name: "Jayden K.", product: "SNAPGOD FULL Edt.", location: "New York, US" },
+      { name: "Mia L.", product: "HIGHSCHOOL THOTS", location: "Vancouver, CA" },
+      { name: "Diego M.", product: "CP4", location: "Madrid, ES" },
+      { name: "Aisha N.", product: "VIP CHANNEL PROMO", location: "Dubai, AE" }
+    ];
